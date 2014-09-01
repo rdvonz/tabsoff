@@ -1,4 +1,8 @@
-/tabsoff/media/album_art/cover.jpg
+
+#Project specific files that shouldn't be added.
+/tabsoff/manage.py
+media/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -25,7 +29,20 @@ var/
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+# Unit test / coverage both development and production.
+
+In order to use {{ MEDIA_URL }} in your templates, you must have 'django.core.context_processors.media' in your TEMPLATE_CONTEXT_PROCESSORS. It’s there by default, but be sure to include it if you override that setting and want this behavior.
+
+Example: "http://media.example.com/"
+
+Warning
+
+There are security risks if you are accepting uploaded content from untrusted users! See the security guide’s topic on User-uploaded content for mitigation details.
+
+Warning
+
+MEDIA_URL and STATIC_URL must have different values. See MEDIA_ROOT for more details.
+reports
 .tox/
 .coverage
 .cache
