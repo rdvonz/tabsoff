@@ -1,0 +1,7 @@
+<h1> Mixtapes </h1>
+
+<ul>
+{% for mixtape in mixtapes %}
+    <li><a href={% url 'mixtape' mixtape.id %}>{{ mixtape.title }}</li>
+{% endfor %}
+</ul>

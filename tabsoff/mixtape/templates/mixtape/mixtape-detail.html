@@ -1,0 +1,9 @@
+<h1> {{ mixtape.title }}</h1>
+
+<img src = "{{ mixtape.album_art.url }}">
+
+<ul>
+{% for track in mixtape.track_set.all %}
+    <li><a href="{{ track.song_file.url }}"> {{ track.title }} - {{ track.artist }} ({{ track.album }})</li>
+{% endfor %}
+</ul>
