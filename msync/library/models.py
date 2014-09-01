@@ -1,25 +1,20 @@
 from django.db import models
 
-class Artist(models.Model):
-    '''
-    Music artist model.
-    '''
+class MixTape(models.Model):
+    title = models.CharField(max_length=100)
+    creator = models.CharField(max_length=100)
+    album_art = models.ImageField(upload_to='album_art')
 
-    artist_name = models.CharField(max_length=50)
+    def __unicode__(self):
+        return self.title
 
-class Album(models.Model):
-    '''
-    Artists may have many different albums.
-    '''
+class Track(models.Model):
+    title = models.CharField(max_length=100)
+    number = models.SmallIntegerField()
+    artist = models.CharField(max_length=100)
+    album = models.CharField(max_length=100)
+    mix = models.ForeignKey(MixTape)
+    song_file = models.FileField(upload_to='songs')
 
-    artist = models.ForeignKey(Artist)
-    name = models.CharField(max_length=100)
-    release_date = models.DateField()
-
-class Song(models.Model):
-
-    models.ForeignKey(Album)
-    artist = models.ForeignKey(Artist)
-    track_title = models.CharField(max_length=100)
-    track_number = models.IntegerField()
-
+    def __unicode__(self):
+        return self.title

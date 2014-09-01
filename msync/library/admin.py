@@ -1,3 +1,7 @@
 from django.contrib import admin
+from library.models import Track
 
-# Register your models here.
+class TrackAdmin(admin.ModelAdmin):
+    list_display = ('number', 'title', 'artist', 'album')
+
+admin.site.register(Track, TrackAdmin)
