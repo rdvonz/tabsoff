@@ -2,7 +2,7 @@
 <head>
     <script src="/static/mixtape/js/audio.js""></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- playlist script taken from audiojs examples page: http://kolber.github.io/audiojs/demos/test6.html --!>
+    <!-- http://kolber.github.io/audiojs/demos/test6.html -->
     <script>
       $(function() {
         // Setup the player to autoplay the next track
@@ -52,9 +52,9 @@
 </ul>
 </head>
 
-
+<body>
 <h1> {{ mixtape.title }}</h1>
-<a href= {{ % url '
+
 <img src = "{{ mixtape.album_art.url }}">
 <audio preload></audio>
 <ol>
@@ -62,4 +62,5 @@
     <li><a href="#" data-src="{{ track.song_file.url }}">{{ track.artist }} - {{ track.title }}</a></li>
 {% endfor %}
 </ol>
+</body>
 </html>
