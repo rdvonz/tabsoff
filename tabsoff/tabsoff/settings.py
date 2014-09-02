@@ -28,6 +28,8 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
 ALLOWED_HOSTS = []
 
 
@@ -36,12 +38,14 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mixtape',
     'django_extensions',
+    'registration',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,3 +104,17 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+#Django Registration settings
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'rdvonz@gmail.com'
+EMAIL_HOST_PASSWORD = keyring.get_password('gmail', 'rdvonz')
+
+#Sites Setting
+
+SITE_ID = 1

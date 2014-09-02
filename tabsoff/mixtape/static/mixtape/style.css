@@ -13,7 +13,6 @@ body {
     border: 1px solid black;
     padding: 19px;
     min-height:100%;
-    overflow: scroll;
 }
 
 #header {
@@ -32,4 +31,11 @@ body {
 .tape_name { 
     width:100%;
     text-align:center;
+}
+
+#cleardiv {
+    /** makes sure the wrapper actually wraps around everything
+     ** more info http://css-tricks.com/all-about-floats/
+     **/
+    clear:both;
 }

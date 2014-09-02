@@ -1,16 +1,12 @@
-{% load staticfiles %}
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="/static/mixtape/style.css"">
-</head>
-<body>
-    <div id="wrapper">
-        <div id="header"><h1> Mixtapesssss</h1></h></div>
+{% extends "mixtape/base.html" %}
+
+{% block header %}
+<h1> mixtapes.</h1>
+{% endblock %}
+{% block content %}
         {% for mixtape in mixtapes %}
         <div class="tape">
             <a href="{% url 'mixtape' mixtape.id %}"><img src="{{ mixtape.album_art.url }}" />
                 <div class="tape_name">{{ mixtape.title }}</div></div></a>
         {% endfor %}
-    </div>
-</body>
-</html>
+{% endblock %}

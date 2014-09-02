@@ -1,5 +1,6 @@
-<html>
-<head>
+{% extends "mixtape/base.html" %}
+
+{% block extra_head %}
     <script src="/static/mixtape/js/audio.js""></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- http://kolber.github.io/audiojs/demos/test6.html -->
@@ -49,18 +50,17 @@
         })
       });
     </script>
-</ul>
-</head>
+{% endblock %}
 
-<body>
-<h1> {{ mixtape.title }}</h1>
+{% block header %}
+<h1>{{ mixtape.title }}</h1>
+{% endblock %}
 
+{% block content %}
 <img src = "{{ mixtape.album_art.url }}">
 <audio preload></audio>
 <ol>
 {% for track in mixtape.track_set.all %}
     <li><a href="#" data-src="{{ track.song_file.url }}">{{ track.artist }} - {{ track.title }}</a></li>
 {% endfor %}
-</ol>
-</body>
-</html>
+{% endblock %}
