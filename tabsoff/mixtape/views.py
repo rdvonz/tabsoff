@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
 from mixtape.models import MixTape
 
 def index(request):
     mixtapes = MixTape.objects.all()
-    context = {'mixtapes': mixtapes}
+    context = {'mixtapes': mixtapes,
+               'form': AuthenticationForm,}
+
     return render(request, 'mixtape/mixtape.html', context)
 
 def mixtape(request, pk):
