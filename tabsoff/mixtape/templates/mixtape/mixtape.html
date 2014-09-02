@@ -1,7 +1,16 @@
-<h1> Mixtapes </h1>
-
-<ul>
-{% for mixtape in mixtapes %}
-    <li><a href={% url 'mixtape' mixtape.id %}>{{ mixtape.title }}</li>
-{% endfor %}
-</ul>
+{% load staticfiles %}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/static/mixtape/style.css"">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header"><h1> Mixtapesssss</h1></h></div>
+        {% for mixtape in mixtapes %}
+        <div class="tape">
+            <a href="{% url 'mixtape' mixtape.id %}"><img src="{{ mixtape.album_art.url }}" />
+                <div class="tape_name">{{ mixtape.title }}</div></div></a>
+        {% endfor %}
+    </div>
+</body>
+</html>
