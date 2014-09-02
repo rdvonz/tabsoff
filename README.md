@@ -6,4 +6,4 @@ Requirements:
 * Audio.js  - http://kolber.github.io/audiojs/
 
 
-"Just a couple of "Tapes that are full / Of the Things we can't say / Tabs pushed off So you can't tape over it ever"
+"Tapes that are full / Of the Things we can't say to each other / Tabs pushed off / So you can't tape over it ever"
