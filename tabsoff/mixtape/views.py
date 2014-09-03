@@ -49,7 +49,7 @@ def upload(request):
             #and save the model to the database
             new_mix.save()
             #redirect to the user to the mixtape page in order to add music
-            return HttpResponseRedirect(reverse('mixtapes:mixtape', args=(new_mix.id)))
+            return HttpResponseRedirect(reverse('mixtapes:mixtape', args=(new_mix.id,)))
     else:
         #an unbound form (that is, no data was added to this form)
         upload_form = MixTapeUploadForm()
