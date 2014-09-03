@@ -7,8 +7,9 @@
 
         {% comment %} should use static loader instead {% endcomment %}
         <link rel="stylesheet" type="text/css" href="/static/mixtape/style.css"">
-
-        {% block extra_head %}
+        {% block css %}
+        {% endblock }
+        {% block js %}
         {% endblock %}
     </head>
     <body>
