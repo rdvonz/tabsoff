@@ -55,3 +55,15 @@ def upload(request):
         upload_form = MixTapeUploadForm()
 
     return render(request, 'mixtape/upload.html', {'upload_form': upload_form})
+
+@login_required(login_url='/mixtapes/')
+def user_mixes(request):
+    '''
+    This is very similar to the default mixtape index
+    The only difference is we find all the mixes the user
+    has created in the database
+    Is there a way to do this without repeating myself?
+    '''
+    mixtapes= MixTape.objects.filter(created_by=request.user)
+
+    return render(request, 'mixtape/mixtape.html', {'mixtapes': mixtapes,})

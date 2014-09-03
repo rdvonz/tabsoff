@@ -6,9 +6,9 @@
         <title>Tabs Off</title>
 
         {% comment %} should use static loader instead {% endcomment %}
-        <link rel="stylesheet" type="text/css" href="/static/mixtape/style.css"">
+        <link rel="stylesheet" type="text/css" href="/static/mixtape/style.css">
         {% block css %}
-        {% endblock }
+        {% endblock %}
         {% block js %}
         {% endblock %}
     </head>
@@ -26,6 +26,7 @@
                     <ul>
                         <li><a href="{% url 'mixtapes:upload' %}">Upload a mix</a></li>
                         <li><a href="">Favorite Mixes</a></li>
+                        <li><a href="{% url 'mixtapes:user_mixes' %}">Your Mixes</a></li>
                         <li><a href ="{% url 'mixtapes:logout' %}?next={{ request.path }}">Logout</a></li> {% comment %} ?next={{ request.path }} in order to redirect back to original page {% endcomment %}
                     </ul>
                     {% else %}
