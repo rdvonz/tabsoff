@@ -16,6 +16,9 @@ body {
 }
 
 #header {
+    height:200px;
+    border-bottom: 1px solid black;
+    margin-bottom:20px;
 }
 .tape {
     max-width: 500px;
@@ -37,4 +40,13 @@ body {
      ** more info http://css-tricks.com/all-about-floats/
      **/
     clear:both;
+}
+#cleardivright {
+    clear:right;
+}
+#loginbox{
+    float:right;
+    clear:both;
+    border: 1px solid black;
+    margin-right: 5px;
 }

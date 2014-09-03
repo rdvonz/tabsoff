@@ -10,6 +10,6 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'mixtapes/', include('mixtape.urls', namespace="mixtapes")),
     url(r'^admin/', include(admin.site.urls)),
-    (r'^accounts/', include('registration.backends.default.urls')),
+
 
                        ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #Stackoverflow answer: tackoverflow.com/questions/5517950/django-media-url-and-media-rootk

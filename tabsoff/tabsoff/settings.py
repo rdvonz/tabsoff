@@ -14,7 +14,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 #keyring management for password to datbase
 import keyring
-password = keyring.get_password("sql", "django_login")
+password = keyring.get_password("sql", "django_ltogin")
 
 #import template context processor
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS

@@ -16,40 +16,43 @@
             <div id="header">
                 {% block header %} 
                 {% endblock %}
-                <div id ="login box">
+                <div id ="loginbox">
+                    {% if login_form.errors %}
+                    <p> Wrong user / password </p>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <p>Welcome, {{ user.get_username }} </p>
+                    <ul>
+                        <li><a href="">Upload a mix</a></li>
+                        <li><a href="">Favorite Mixes</a></li>
+                        <li><a href ="{% url 'mixtapes:logout' %}?next={{ request.path }}">Logout</a></li> {% comment %} ?next={{ request.path }} in order to redirect back to original page {% endcomment %}
+                    </ul>
+                    {% else %}
+                        <form method="post" action="{% url 'mixtapes:login' %}">
+                        {% csrf_token %}
+                        <table>
+                            <tr>
+                                <td>{{ login_form.username.label_tag }}</td>
+                                <td>{{ login_form.username }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ login_form.password.label_tag }}</td>
+                                <td>{{ login_form.password }}</td>
+                            </tr>
+                        </table>
 
+                        <input type="submit" value="login" />
+                        <input type="hidden" name="next" value="{{ request.path }}" />
+                        </form>
 
-{% if login_form.errors %}
-<span 
-{% endif %}
-{% if user.is_authenticated %}
-<p> dude you are auth'd</p>
-{% endif %}
-<form method="post" action="{% url 'mixtapes:django.contrib.auth.views.login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ login_form.username.label_tag }}</td>
-    <td>{{ login_form.username }}</td>
-</tr>
-<tr>
-    <td>{{ login_form.password.label_tag }}</td>
-    <td>{{ login_form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ request.path }}" />
-</form>
-
-
-
+                    {% endif %}
                 </div>
 
             </div>
-            {% block content %}
-            {% endblock %}
-            <div id="cleardiv"></div>
+                <div id="cleardivright"></div>
+                {% block content %}
+                {% endblock %}
+                <div id="cleardiv"></div>
         </div>
     </body>
 </html>
