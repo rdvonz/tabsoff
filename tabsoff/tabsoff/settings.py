@@ -16,7 +16,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 import keyring
 password = keyring.get_password("sql", "django_login")
 
-
+#import template context processor
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -62,7 +63,10 @@ ROOT_URLCONF = 'tabsoff.urls'
 
 WSGI_APPLICATION = 'tabsoff.wsgi.application'
 
+TEMPLATE_CONTEXT_PROCESSORS += ("mixtape.context_processors.login_context_processor",
+            "django.core.context_processors.request",)
 
+LOGIN_REDIRECT_URL ='/index'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 

@@ -17,8 +17,33 @@
                 {% block header %} 
                 {% endblock %}
                 <div id ="login box">
-                    {% block login_form %} 
-                    {%endblock %}
+
+
+{% if login_form.errors %}
+<span 
+{% endif %}
+{% if user.is_authenticated %}
+<p> dude you are auth'd</p>
+{% endif %}
+<form method="post" action="{% url 'mixtapes:django.contrib.auth.views.login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ login_form.username.label_tag }}</td>
+    <td>{{ login_form.username }}</td>
+</tr>
+<tr>
+    <td>{{ login_form.password.label_tag }}</td>
+    <td>{{ login_form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="login" />
+<input type="hidden" name="next" value="{{ request.path }}" />
+</form>
+
+
+
                 </div>
 
             </div>

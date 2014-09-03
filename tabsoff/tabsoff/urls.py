@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'msync.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-    url(r'mixtapes/', include('mixtape.urls')),
+    url(r'mixtapes/', include('mixtape.urls', namespace="mixtapes")),
     url(r'^admin/', include(admin.site.urls)),
     (r'^accounts/', include('registration.backends.default.urls')),
 
