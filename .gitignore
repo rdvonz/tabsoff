@@ -1,4 +1,4 @@
-/tabsoff/mixtape/admin.py
+
 
 #Project specific files that shouldn't be added.
 /tabsoff/manage.py

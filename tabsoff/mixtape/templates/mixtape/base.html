@@ -23,7 +23,7 @@
                     {% if user.is_authenticated %}
                     <p>Welcome, {{ user.get_username }} </p>
                     <ul>
-                        <li><a href="">Upload a mix</a></li>
+                        <li><a href="{% url 'mixtapes:upload' %}">Upload a mix</a></li>
                         <li><a href="">Favorite Mixes</a></li>
                         <li><a href ="{% url 'mixtapes:logout' %}?next={{ request.path }}">Logout</a></li> {% comment %} ?next={{ request.path }} in order to redirect back to original page {% endcomment %}
                     </ul>
