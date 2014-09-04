@@ -46,7 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'mixtape',
     'django_extensions',
-    'registration',
+    'sorl.thumbnail',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -64,9 +64,8 @@ ROOT_URLCONF = 'tabsoff.urls'
 WSGI_APPLICATION = 'tabsoff.wsgi.application'
 
 TEMPLATE_CONTEXT_PROCESSORS += ("mixtape.context_processors.login_context_processor",
-            "django.core.context_processors.request",)
-
-LOGIN_REDIRECT_URL ='/index'
+                                )
+LOGIN_URL ='/mixtapes/'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 

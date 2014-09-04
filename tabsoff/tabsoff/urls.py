@@ -5,11 +5,12 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'msync.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-    url(r'mixtapes/', include('mixtape.urls', namespace="mixtapes")),
-    url(r'^admin/', include(admin.site.urls)),
+
+                       # Examples:
+                       # url(r'^$', 'msync.views.home', name='home'),
+                       # url(r'^blog/', include('blog.urls')),
+                       url(r'mixtapes/', include('mixtape.urls', namespace="mixtapes")),
+                       url(r'^admin/', include(admin.site.urls)),
 
 
                        ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #Stackoverflow answer: tackoverflow.com/questions/5517950/django-media-url-and-media-rootk
