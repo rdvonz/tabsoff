@@ -7,11 +7,12 @@
 {% endblock %}
 
 {% block header %}
-<h1>{{ mixtape.title }}</h1>
+<h1> Mixtape </h1>
 {% endblock %}
 
 {% block content %}
 
+<h1>{{ mixtape.title }} by {{mixtape.created_by }}</h1>
 <a href="{% url 'mixtapes:favorite' mixtape.id %}">Favorite this mix!</a><br /> {% comment %} in the future this should show as 'unfavorite mix' if a user has favorited {% endcomment %}
 <p> This track has been favorited by:</p>
 <ul>
