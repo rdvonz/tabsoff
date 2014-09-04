@@ -1,5 +1,5 @@
 {% extends "mixtape/base.html" %}
-
+{% load thumbnail %}
 {% block js %}
 <script src="/static/mixtape/js/audio.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -20,7 +20,9 @@
 
     {% endfor %}
 </ul>
-<img src = "{{ mixtape.album_art.url }}">
+{% thumbnail mixtape.album_art "500x500" crop="center" as album_art %}
+<img src = "{{ album_art.url }}">
+{% endthumbnail %}
 <audio preload></audio>
 <ol>
     {% for track in mixtape.track_set.all %}

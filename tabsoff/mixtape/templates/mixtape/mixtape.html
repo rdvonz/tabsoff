@@ -1,15 +1,21 @@
 {% extends "mixtape/base.html" %}
-
+{% load thumbnail %}
 {% block header %}
 <h1> mixtapes.</h1>
 {% endblock %}
 
 
 {% block content %}
+{% if no_entry %}
+<p> You have to be logged in to do that! </p>
+{% endif %}
 {% if mixtapes %}
     {% for mixtape in mixtapes %}
         <div class="tape">
-            <a href="{% url 'mixtapes:mixtape' mixtape.id %}"><img src="{{ mixtape.album_art.url }}" />
+            <a href="{% url 'mixtapes:mixtape' mixtape.id %}">
+            {% thumbnail mixtape.album_art "500x500" crop="center" as album_art %}
+            <img src="{{  album_art.url }}" />
+            {% endthumbnail %}
         <div class="tape_name">{{ mixtape.title }}</div></div></a>
     {% endfor %}
 {% else %}

@@ -1,12 +1,13 @@
 from django.contrib.auth.models import User
 from django.db import models
+from sorl.thumbnail import ImageField
 
 class MixTape(models.Model):
     '''
     The mixtape model
     '''
     title = models.CharField(max_length=100)
-    album_art = models.ImageField(upload_to='album_art')
+    album_art = ImageField(upload_to='album_art')
     #The created_by field won't be accessible by a user, we find that out based on who's logged in
     created_by = models.ForeignKey(User,
                                    related_name='created_by')
