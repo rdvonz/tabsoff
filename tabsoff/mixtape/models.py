@@ -7,10 +7,12 @@ class MixTape(models.Model):
     '''
     title = models.CharField(max_length=100)
     album_art = models.ImageField(upload_to='album_art')
-
     #The created_by field won't be accessible by a user, we find that out based on who's logged in
-    created_by = models.ForeignKey(User)
-
+    created_by = models.ForeignKey(User,
+                                   related_name='creator')
+    favorited_by = models.ManyToManyField(User,
+                                          related_name='favorited_by',
+                                          blank=True)
     def __unicode__(self):
         return self.title
 
@@ -19,7 +21,6 @@ class Track(models.Model):
     The track model
     '''
     title = models.CharField(max_length=100)
-    number = models.SmallIntegerField()
     artist = models.CharField(max_length=100)
     album = models.CharField(max_length=100)
     #many to one relationship with the MixTape model

@@ -1,9 +1,9 @@
 {% extends "mixtape/base.html" %}
 
 {% block js %}
-    <script src="/static/mixtape/js/audio.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="/static/mixtape/js/audio-playlist.js">
+<script src="/static/mixtape/js/audio.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/static/mixtape/js/audio-playlist.js"></script>
 {% endblock %}
 
 {% block header %}
@@ -11,10 +11,20 @@
 {% endblock %}
 
 {% block content %}
+
+<a href="{% url 'mixtapes:favorite' mixtape.id %}">Favorite this mix!</a><br />
+<p> This track has been favorited by:</p>
+<ul>
+    {% for user in mixtape.favorited_by.all %}
+    <li> {{ user }} </li> {% comment %} it would be nice to have this link to user's favorites {% endcomment %}
+    {% endfor %}
+</ul>
 <img src = "{{ mixtape.album_art.url }}">
 <audio preload></audio>
 <ol>
-{% for track in mixtape.track_set.all %}
+    {% for track in mixtape.track_set.all %}
     <li><a href="#" data-src="{{ track.song_file.url }}">{{ track.artist }} - {{ track.title }}</a></li>
-{% endfor %}
-{% endblock %}
+    {% endfor %}
+    {% endblock %}
+</ol>
+

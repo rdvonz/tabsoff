@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
 from mixtape.models import MixTape
@@ -15,7 +16,7 @@ def index(request):
 
     #The template context, gives us a 'mixtapes' variable to work with
     context = {'mixtapes': mixtapes,
-            }
+               }
 
     return render(request, 'mixtape/mixtape.html', context)
 
@@ -24,11 +25,13 @@ def mixtape(request, pk):
     '''
     the mixtape page
     '''
-
-    #we're only displaying a single mixtape here, and we'e building the url based off the mixtape id (the primary key)
+    #we're only displaying a single mixtape here, and we're building the url based off the mixtape id (the primary key)
     mixtape = MixTape.objects.get(pk=pk)
+    users_favorited = []
 
-    context = {'mixtape': mixtape}
+    context = {'mixtape': mixtape,
+               'favorites': users_favorited,
+               }
 
     return render(request, 'mixtape/mixtape-detail.html', context)
 
@@ -50,9 +53,9 @@ def upload(request):
             new_mix.save()
             #redirect to the user to the mixtape page in order to add music
             return HttpResponseRedirect(reverse('mixtapes:mixtape', args=(new_mix.id,)))
-    else:
-        #an unbound form (that is, no data was added to this form)
-        upload_form = MixTapeUploadForm()
+        else:
+            #an unbound form (that is, no data was added to this form)
+            upload_form = MixTapeUploadForm()
 
     return render(request, 'mixtape/upload.html', {'upload_form': upload_form})
 
@@ -67,3 +70,10 @@ def user_mixes(request):
     mixtapes= MixTape.objects.filter(created_by=request.user)
 
     return render(request, 'mixtape/mixtape.html', {'mixtapes': mixtapes,})
+
+@login_required(login_url='/mixtapes')
+def add_favorite(request, pk):
+    mixtape = MixTape.objects.get(pk=pk)
+    mixtape.favorited_by.add(request.user)
+    return HttpResponseRedirect(reverse('mixtapes:mixtape', args=(pk,)))
+
