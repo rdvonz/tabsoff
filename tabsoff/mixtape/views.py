@@ -1,25 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-
+from django.views.generic import ListView
 from mixtape.models import MixTape
 from mixtape.forms import MixTapeUploadForm
 
-def index(request):
+class MixTapeList(ListView):
     '''
     The mixtape site index.
     '''
     #We want to show all the mixtapes on the main page. Maybe add an ordering later?
-    mixtapes = MixTape.objects.all()
+    context_object_name = 'mixtapes'
+    template_name = 'mixtape/mixtape.html'
+    model = MixTape
 
-    #The template context, gives us a 'mixtapes' variable to work with
-    context = {'mixtapes': mixtapes,
-               }
+class FavoriteMixTapeList(ListView):
+    context_object_name = 'mixtapes'
+    template_name = 'mixtape/mixtape.html'
 
-    return render(request, 'mixtape/mixtape.html', context)
+    def get_queryset(self):
+        return MixTape.objects.filter(favorited_by=self.request.user)
 
+class UserMixTapeList(ListView):
+    context_object_name = 'mixtapes'
+    template_name = 'mixtape/mixtape.html'
 
+    def get_queryset(self):
+        return MixTape.objects.filter(created_by=self.request.user)
 def mixtape(request, pk):
     '''
     the mixtape page
@@ -58,21 +66,9 @@ def upload(request):
 
     return render(request, 'mixtape/upload.html', {'upload_form': upload_form})
 
-@login_required(login_url='/mixtapes/')
-def user_mixes(request):
-    '''
-    This is very similar to the default mixtape index
-    The only difference is we find all the mixes the user
-    has created in the database
-    Is there a way to do this without repeating myself?
-    '''
-    mixtapes= MixTape.objects.filter(created_by=request.user)
-
-    return render(request, 'mixtape/mixtape.html', {'mixtapes': mixtapes,})
 
 @login_required(login_url='/mixtapes')
 def add_favorite(request, pk):
     mixtape = MixTape.objects.get(pk=pk)
     mixtape.favorited_by.add(request.user)
     return HttpResponseRedirect(reverse('mixtapes:mixtape', args=(pk,)))
-

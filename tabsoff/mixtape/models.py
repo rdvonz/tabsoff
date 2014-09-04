@@ -9,7 +9,7 @@ class MixTape(models.Model):
     album_art = models.ImageField(upload_to='album_art')
     #The created_by field won't be accessible by a user, we find that out based on who's logged in
     created_by = models.ForeignKey(User,
-                                   related_name='creator')
+                                   related_name='created_by')
     favorited_by = models.ManyToManyField(User,
                                           related_name='favorited_by',
                                           blank=True)
