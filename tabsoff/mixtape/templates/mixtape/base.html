@@ -15,8 +15,12 @@
     <body>
         <div id="wrapper">
             <div id="header">
+
                 {% block header %} 
                 {% endblock %}
+                <span id="navbar">
+                    <a href="{% url 'mixtapes:index' %}">Homepage</a>
+
                 <div id ="loginbox">
                     {% if login_form.errors %}
                     <p> Wrong user / password </p>
