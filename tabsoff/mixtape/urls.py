@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 from mixtape import views
 
 urlpatterns = patterns('',
