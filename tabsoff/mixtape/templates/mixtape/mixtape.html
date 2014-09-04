@@ -6,9 +6,13 @@
 
 
 {% block content %}
-{% for mixtape in mixtapes %}
-<div class="tape">
-    <a href="{% url 'mixtapes:mixtape' mixtape.id %}"><img src="{{ mixtape.album_art.url }}" />
+{% if mixtapes %}
+    {% for mixtape in mixtapes %}
+        <div class="tape">
+            <a href="{% url 'mixtapes:mixtape' mixtape.id %}"><img src="{{ mixtape.album_art.url }}" />
         <div class="tape_name">{{ mixtape.title }}</div></div></a>
-{% endfor %}
+    {% endfor %}
+{% else %}
+    <p> There are no mixtapes here! Why don't you add some? </p>
+{% endif %}
 {% endblock %}

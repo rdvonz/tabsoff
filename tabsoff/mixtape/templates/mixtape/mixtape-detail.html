@@ -12,11 +12,12 @@
 
 {% block content %}
 
-<a href="{% url 'mixtapes:favorite' mixtape.id %}">Favorite this mix!</a><br />
+<a href="{% url 'mixtapes:favorite' mixtape.id %}">Favorite this mix!</a><br /> {% comment %} in the future this should show as 'unfavorite mix' if a user has favorited {% endcomment %}
 <p> This track has been favorited by:</p>
 <ul>
     {% for user in mixtape.favorited_by.all %}
     <li> {{ user }} </li> {% comment %} it would be nice to have this link to user's favorites {% endcomment %}
+
     {% endfor %}
 </ul>
 <img src = "{{ mixtape.album_art.url }}">
