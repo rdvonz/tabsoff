@@ -8,7 +8,7 @@ class TrackInline(admin.TabularInline):
 class MixTapeAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
-                'fields': ('title', 'created_by', 'album_art')
+                'fields': ('title', 'created_by', 'album_art', 'favorited_by')
         }),
    )
 
