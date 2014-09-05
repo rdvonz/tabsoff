@@ -13,7 +13,7 @@
     {% for mixtape in mixtapes %}
         <div class="tape">
             <a href="{% url 'mixtapes:mixtape' mixtape.id %}">
-            {% thumbnail mixtape.album_art "500x500" crop="center" as album_art %}
+            {% thumbnail mixtape.album_art "150x150" crop="center" as album_art %}
             <img src="{{  album_art.url }}" />
             {% endthumbnail %}
         <div class="tape_name">{{ mixtape.title }}</div></div></a>

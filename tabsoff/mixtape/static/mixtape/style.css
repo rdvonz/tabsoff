@@ -1,3 +1,16 @@
+@font-face {
+    font-family: 'bebas_neueregular';
+    src: url('BebasNeue-webfont.eot');
+    src: url('BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+    url('BebasNeue-webfont.woff') format('woff'),
+    url('BebasNeue-webfont.ttf') format('truetype'),
+    url('BebasNeue-webfont.svg#bebas_neueregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
 html {
     height: 100%;
 
@@ -6,31 +19,87 @@ body {
     margin: 0;
     padding: 0;
     height:100%;
+    background-color:#141413;
+    font-family:Helvetica,Arial,sans-serif;
 }
 #wrapper {
-    width: 1200px;
+    width: 950px;
     margin:auto;
-    border: 1px solid black;
-    padding: 19px;
     min-height:100%;
 }
 
 #header {
-    height:300px;
-    border-bottom: 1px solid black;
-    margin-bottom:20px;
+    font-size:20px;
+    color:#aeee00;
+    overflow:auto;
+    text-align:left;
+    text-decoration:none;
+    padding-left:32px;
+    margin:0;
+    background-image:url('grid.png');
+    background-repeat:repeat;
+}
+#header h1{
+    font-family: 'bebas_neueregular';
+    font-size:150px;
+    color:#aeee00;
+    text-align:left;
+    text-decoration:none;
+    padding-left:32px;
+    margin:0;
+    width:300px;
+    clear:both;
+    display:inline;
+    float:left;
+}
+#loginbox{
+    float:right;
+    margin: 10px;
+    padding:5px;
+    background-color:#242321;
+    color:#d9cec3;
+    border: 1px solid black;
+}
+#content {
+    background-color:#242321;
+    opacity:.95;
+    min-height:500px;
+    width: 90%;
+    color:#d9cec3;
+    padding: 0 5%;
+    margin:auto;
+    text-align:left;
+    border-bottom: 50px solid #242321;
+    border-radius:0 0 20px 20px;
+}
+#navbar a{
+    font-size:25px;
+    color:#fade3e;
+    text-align:center;
+    text-decoration:none;
+
+}
+#shadow{
+    width:100%;
+    background-color:#242321;
+    opacity:.95;
+    height:30px;
+    background-image:url('shadow.png');
+    background-repeat:repeat-x;
 }
 .tape {
-    max-width: 500px;
+    max-width: 150px;
     max-height: 600px;
     float:left;
-    border: 1px solid black;
     padding:20px;
     margin-left: 5px;
     margin-bottom: 5px;
     overflow:hidden;
 }
-
+.tape a{
+    color:#d9cec3;
+    text-decoration:none;
+}
 .tape_name { 
     width:100%;
     text-align:center;
@@ -45,9 +114,8 @@ body {
 #cleardivright {
     clear:right;
 }
-#loginbox{
-    float:right;
-    clear:both;
-    border: 1px solid black;
-    margin-right: 5px;
+
+
+#loginbox ul{
+    list-style-type:none;
 }

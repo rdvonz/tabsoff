@@ -4,31 +4,40 @@
 <script src="/static/mixtape/js/audio.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="/static/mixtape/js/audio-playlist.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/mixtape/style-detail.css">
 {% endblock %}
 
 {% block header %}
-<h1> Mixtape </h1>
+<h1> mixtape. </h1>
 {% endblock %}
 
 {% block content %}
 
 <h1>{{ mixtape.title }} by {{mixtape.created_by }}</h1>
-<a href="{% url 'mixtapes:favorite' mixtape.id %}">Favorite this mix!</a><br /> {% comment %} in the future this should show as 'unfavorite mix' if a user has favorited {% endcomment %}
-<p> This track has been favorited by:</p>
-<ul>
-    {% for user in mixtape.favorited_by.all %}
-    <li> {{ user }} </li> {% comment %} it would be nice to have this link to user's favorites {% endcomment %}
+<div id="player">
+    {% thumbnail mixtape.album_art "460x460" crop="center" as album_art %}
+    <img src = "{{ album_art.url }}">
+    {% endthumbnail %}
+    <audio preload></audio>
+    <ol>
+        {% for track in mixtape.track_set.all %}
+        <li><a href="#" data-src="{{ track.song_file.url }}">{{ track.artist }} - {{ track.title }}</a></li>
+        {% endfor %}
 
-    {% endfor %}
-</ul>
-{% thumbnail mixtape.album_art "500x500" crop="center" as album_art %}
-<img src = "{{ album_art.url }}">
-{% endthumbnail %}
-<audio preload></audio>
-<ol>
-    {% for track in mixtape.track_set.all %}
-    <li><a href="#" data-src="{{ track.song_file.url }}">{{ track.artist }} - {{ track.title }}</a></li>
-    {% endfor %}
-    {% endblock %}
-</ol>
+    </ol>
+</div>
+
+<div id="favorite">
+    <a href="{% url 'mixtapes:favorite' mixtape.id %}">Favorite this mix!</a><br /> {% comment %} in the future this should show as 'unfavorite mix' if a user has favorited {% endcomment %}
+    <p> This track has been favorited by:</p>
+    <ul>
+        {% for user in mixtape.favorited_by.all %}
+        <li> {{ user }} </li> {% comment %} it would be nice to have this link to user's favorites {% endcomment %}
+
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
+
 
