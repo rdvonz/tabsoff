@@ -1,0 +1,26 @@
+{% extends "mixtape/base.html" %}
+
+
+{% block content %}
+{% if error_mp3 %}
+<p>What is {{ song_error }} anyway? It doesn't look like any MP3 I've ever seen.</p>
+<p> Note: Zip files shouldn't have folders, they should contain only mp3s</p>
+{% endif %}
+{% if error_tag %}
+<p> it looks like "{{ song_error }}" is missing a tag! Make sure you have proper tags on all your MP3's!</p>
+{% endif %}
+{% if error_zip %}
+<p> Doesn't look like you are uploading a proper zip file... Try again?</p>
+{% endif %}
+{% if error_dir %}
+<p> Looks like you tried uploading a zip with a folder in it! remove: {{ song_error }}
+{% endif %}
+<form action="#" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ upload_form.non_field_errors }}
+    <p> {{upload_form.mix_name.label }} {{ upload_form.mix_name }} </p>
+    <p> {{ upload_form.album_art.label }} {{upload_form.album_art }} </p>
+    <p> {{ upload_form.mixtape.label }} {{upload_form.mixtape }} </p>
+    <p><input type="submit" value="Upload" /></p>
+</form>
+{% endblock %}

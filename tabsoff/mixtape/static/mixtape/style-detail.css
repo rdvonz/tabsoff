@@ -1,0 +1,24 @@
+#player{
+    float:left;
+}
+
+#player ol.playing{
+    background-color:white;
+}
+#player ol:nth-child(odd) {
+    background-color: black;
+}
+#player ol a{
+    color:#d9cec3;
+    text-decoration:none;
+}
+#player ol a:hover{
+}
+#player img{
+}
+#favorite {
+    border: 1px solid black;
+    width:300px;
+    float:right;
+
+}
